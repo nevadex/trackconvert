@@ -6,4 +6,8 @@ package trackconvert
 // 	"github.com/buger/jsonparser"
 // )
 
-//asd
+func TrackFromString(inputName string) Track {
+	inputName = cleanString(inputName)
+
+	return Track{id: "nil", accuracy: 0}
+}
