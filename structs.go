@@ -15,12 +15,17 @@ func cleanString(s string) string {
 	}, s)
 }
 
-type searchResult struct {
-	title          string
-	videoId        string
-	channel        string
-	length         time.Duration
-	verifiedArtist bool
+func makeTrackStr(ar string, tr string) string {
+	return cleanString(ar) + " - " + cleanString(tr)
+}
+
+type SearchResult struct {
+	Title          string
+	VideoId        string
+	Channel        string
+	Length         time.Duration
+	Views          int64
+	VerifiedArtist bool
 }
 
 type Track struct {

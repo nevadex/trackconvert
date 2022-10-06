@@ -13,11 +13,12 @@ func TestSearchTrackName(t *testing.T) {
 	}
 	t.Logf(strconv.Itoa(len(rs)) + " results")
 	for i := 0; i < len(rs); i++ {
-		t.Logf(rs[i].videoId)
-		t.Logf(rs[i].title)
-		t.Logf(rs[i].channel)
-		t.Logf(rs[i].length.String())
-		t.Logf(strconv.FormatBool(rs[i].verifiedArtist))
+		t.Logf(rs[i].VideoId)
+		t.Logf(rs[i].Title)
+		t.Logf(rs[i].Channel)
+		t.Logf(rs[i].Length.String())
+		t.Logf(strconv.FormatInt(rs[i].Views, 10))
+		t.Logf(strconv.FormatBool(rs[i].VerifiedArtist))
 		t.Logf("\n")
 	}
 }
