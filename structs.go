@@ -26,11 +26,19 @@ type SearchResult struct {
 	Length         time.Duration
 	Views          int64
 	VerifiedArtist bool
+	accuracy       int
 }
 
-type Track struct {
-	id       string
-	accuracy int
+type AccurateSongData struct {
+	Title  string
+	Artist string
+	Length time.Duration
+}
+
+type Song struct {
+	VideoId      string
+	Accuracy     int
+	SearchResult SearchResult
 }
 
 var headers = map[string]string{

@@ -14,7 +14,7 @@ import (
 func searchTrackName(s string) ([]SearchResult, error) {
 	resp, err := req.R().
 		SetHeaders(headers).
-		SetBody(strings.NewReader(`{"query":"` + strings.ReplaceAll(s, " ", "+") + `","context":{"client":{"hl":"en","gl":"US","clientName":"MWEB","clientVersion":"2.20220929.09.00"}}}`)).
+		SetBody(strings.NewReader(`{"query":"` + strings.ReplaceAll(s, " ", "+") + `","params":"EgIQAQ%3D%3D","user":{"lockedSafetyMode":false},"context":{"client":{"hl":"en","gl":"US","clientName":"MWEB","clientVersion":"2.20220929.09.00"}}}`)).
 		Post(ytSearchEndpoint)
 
 	if err != nil || resp.StatusCode != 200 {
@@ -94,11 +94,13 @@ func searchTrackName(s string) ([]SearchResult, error) {
 		}
 
 		badge, err := jsonparser.GetString(b, "ownerBadges", "[0]", "metadataBadgeRenderer", "style")
-		if badge == "BADGE_STYLE_TYPE_VERIFIED_ARTIST" && err == nil {
+		if (badge == "BADGE_STYLE_TYPE_VERIFIED_ARTIST" || badge == "BADGE_STYLE_TYPE_VERIFIED") && err == nil {
 			r.VerifiedArtist = true
 		} else {
 			r.VerifiedArtist = false
 		}
+
+		r.accuracy = 0
 
 		rs = append(rs, r)
 	})
