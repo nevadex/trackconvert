@@ -24,7 +24,7 @@ import (
 
 func main() {
     sd := tc.AccurateSongData{Artist: "Pinkfong", Title: "Baby Shark"}
-    sd, _ = time.ParseDuration("1m20s")
+    sd.Length, _ = time.ParseDuration("1m20s")
     song, err := tc.ConvertSongAccurate(sd)
     
     if err == nil {
@@ -50,3 +50,10 @@ func main() {
     }
 }
 ```
+
+## Accuracy Integer
+The Accuracy int inside the Song struct returned from ConvertSongAccurate is a value to determine the accuracy of the converted track to the original input.  
+> **A lower accuracy integer is better**  
+
+The more issues/deviations a converted track has, the higher its accuracy integer will be.  
+The function automatically returns the most accurate result from youtube, which is the one with the snallest accuracy integer.  
